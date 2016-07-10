@@ -15,6 +15,8 @@ $packageArgs = @{
 
 $programFiles = (${env:ProgramFiles(x86)}, ${env:ProgramFiles} -ne $null)[0]
 
+$installed = $false
+
 foreach ($version in @("14.0", "12.0", "11.0")) {
     $extensionsDirectory = "{0}\Microsoft Visual Studio {1}\Common7\IDE\CommonExtensions\Microsoft\TestWindow\Extensions" -f $programFiles, $version
 
@@ -24,5 +26,10 @@ foreach ($version in @("14.0", "12.0", "11.0")) {
         $packageArgs.packageName = "$packageName-$version"
 
         Install-ChocolateyZipPackage @packageArgs
+        $installed = $true
     }
+}
+
+if (-not $installed) {
+    Write-Warning "No compatible instances of Visual Studio were found to install the custom logger in"
 }

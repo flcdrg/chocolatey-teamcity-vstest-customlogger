@@ -32,10 +32,17 @@ The logger must be installed manually on the agent machine, as it requires dlls 
     <releaseNotes>Supports TeamCity 9.1.x</releaseNotes>
     <!-- =============================== -->      
 
+	<dependencies>
+      <dependency id="teamcityagent" version="1.1.0" />
+    </dependencies>
+
     <!-- chocolatey-uninstall.extension - If supporting 0.9.9.x (or below) and including a chocolateyUninstall.ps1 file to uninstall an EXE/MSI, you probably want to include chocolatey-uninstall.extension as a dependency. Please verify whether you are using a helper function from that package. -->
   </metadata>
   <files>
     <!-- this section controls what actually gets packaged into the Chocolatey package -->
     <file src="tools\**" target="tools" />
   </files>
+  
+  
+  
 </package>
